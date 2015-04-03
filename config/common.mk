@@ -164,16 +164,16 @@ ifndef FLEX_BUILDTYPE
     endif
 endif
 
-# Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(FLEX_BUILDTYPE)),)
+# Filter out random types, so it'll reset to unofficial
+ifeq ($(filter RELEASE NIGHTLY SNAPSHOT experimental,$(FLEX_BUILDTYPE)),)
     FLEX_BUILDTYPE :=
 endif
 
 ifdef FLEX_BUILDTYPE
     ifneq ($(FLEX_BUILDTYPE), SNAPSHOT)
         ifdef FLEX_EXTRAVERSION
-            # Force build type to EXPERIMENTAL
-            FLEX_BUILDTYPE := EXPERIMENTAL
+            # Force build type to experimental
+            FLEX_BUILDTYPE := experimental
             # Remove leading dash from FLEX_EXTRAVERSION
             FLEX_EXTRAVERSION := $(shell echo $(FLEX_EXTRAVERSION) | sed 's/-//')
             # Add leading dash to FLEX_EXTRAVERSION
@@ -181,8 +181,8 @@ ifdef FLEX_BUILDTYPE
         endif
     else
         ifndef FLEX_EXTRAVERSION
-            # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            FLEX_BUILDTYPE := EXPERIMENTAL
+            # Force build type to experimental, SNAPSHOT mandates a tag
+            FLEX_BUILDTYPE := experimental
         else
             # Remove leading dash from FLEX_EXTRAVERSION
             FLEX_EXTRAVERSION := $(shell echo $(FLEX_EXTRAVERSION) | sed 's/-//')
@@ -191,32 +191,32 @@ ifdef FLEX_BUILDTYPE
         endif
     endif
 else
-    # If FLEX_BUILDTYPE is not defined, set to UNOFFICIAL
-    FLEX_BUILDTYPE := UNOFFICIAL
+    # If FLEX_BUILDTYPE is not defined, set to unofficial
+    FLEX_BUILDTYPE := unofficial
     FLEX_EXTRAVERSION :=
 endif
 
-ifeq ($(FLEX_BUILDTYPE), UNOFFICIAL)
-    ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        FLEX_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+ifeq ($(FLEX_BUILDTYPE), unofficial)
+    ifneq ($(TARGET_unofficial_BUILD_ID),)
+        FLEX_EXTRAVERSION := -$(TARGET_unofficial_BUILD_ID)
     endif
 endif
 
 ifeq ($(FLEX_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        FLEX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(FLEX_BUILD)
+        FLEX_VERSION := flexos_$(PLATFORM_VERSION).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(FLEX_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            FLEX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(FLEX_BUILD)
+            FLEX_VERSION := flexos_$(PLATFORM_VERSION)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(FLEX_BUILD)
         else
-            FLEX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(FLEX_BUILD)
+            FLEX_VERSION := flexos_$(PLATFORM_VERSION).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(FLEX_BUILD)
         endif
     endif
 else
     ifeq ($(PRODUCT_VERSION_MINOR),0)
-        FLEX_VERSION := $(PRODUCT_VERSION_MAJOR)-$(shell date -u +%Y%m%d)-$(FLEX_BUILDTYPE)$(FLEX_EXTRAVERSION)-$(FLEX_BUILD)
+        FLEX_VERSION := flexos_$(PLATFORM)_$(shell date -u +%Y%m%d)_$(FLEX_BUILDTYPE)$(FLEX_EXTRAVERSION)_$(FLEX_BUILD)
     else
-        FLEX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(FLEX_BUILDTYPE)$(FLEX_EXTRAVERSION)-$(FLEX_BUILD)
+        FLEX_VERSION := flexos_$(PLATFORM_VERSION)_$(shell date -u +%Y%m%d)_$(FLEX_BUILDTYPE)$(FLEX_EXTRAVERSION)_$(FLEX_BUILD)
     endif
 endif
 
@@ -231,7 +231,7 @@ FLEX_DISPLAY_VERSION := $(FLEX_VERSION)
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-  ifneq ($(FLEX_BUILDTYPE), UNOFFICIAL)
+  ifneq ($(FLEX_BUILDTYPE), unofficial)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
       ifneq ($(FLEX_EXTRAVERSION),)
         # Remove leading dash from FLEX_EXTRAVERSION
@@ -243,7 +243,7 @@ ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
     else
       TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
     endif
-    FLEX_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
+    FLEX_DISPLAY_VERSION=flexos_$(PLATFORM_VERSION)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
   endif
 endif
 endif
