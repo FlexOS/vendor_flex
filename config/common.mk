@@ -156,11 +156,12 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 
-# Custom CM packages
+# Custom packages
 PRODUCT_PACKAGES += \
     Launcher3 \
     Trebuchet \
-    AudioFX
+    AudioFX \
+    OmniSwitch
 
 # rsync
 PRODUCT_PACKAGES += \
