@@ -161,7 +161,8 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     Trebuchet \
     AudioFX \
-    OmniSwitch
+    OmniSwitch \
+    LockClock
 
 # rsync
 PRODUCT_PACKAGES += \
