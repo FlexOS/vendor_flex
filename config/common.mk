@@ -216,12 +216,12 @@ ifndef FLEX_BUILDTYPE
 endif
 
 # Filter out random types, so it'll reset to unofficial
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT experimental,$(FLEX_BUILDTYPE)),)
+ifeq ($(filter weekly nightly release experimental,$(FLEX_BUILDTYPE)),)
     FLEX_BUILDTYPE :=
 endif
 
 ifdef FLEX_BUILDTYPE
-    ifneq ($(FLEX_BUILDTYPE), SNAPSHOT)
+    ifneq ($(FLEX_BUILDTYPE), release)
         ifdef FLEX_EXTRAVERSION
             # Force build type to experimental
             FLEX_BUILDTYPE := experimental
@@ -232,7 +232,7 @@ ifdef FLEX_BUILDTYPE
         endif
     else
         ifndef FLEX_EXTRAVERSION
-            # Force build type to experimental, SNAPSHOT mandates a tag
+            # Force build type to experimental, release mandates a tag
             FLEX_BUILDTYPE := experimental
         else
             # Remove leading dash from FLEX_EXTRAVERSION
