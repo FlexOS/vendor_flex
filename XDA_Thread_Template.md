@@ -11,7 +11,7 @@
 */[/CODE]
 [FONT=Trebuchet MS]
 
-[YOUTUBE]https://www.youtube.com/watch?v=W8Ig1AgeQEQ[/YOUTUBE]
+[YOUTUBE]W8Ig1AgeQEQ[/YOUTUBE]
 
 [SIZE=7][B][COLOR="RoyalBlue"]FEATURES[/COLOR][/B][/SIZE][/FONT]
 [LIST]
