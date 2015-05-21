@@ -40,5 +40,5 @@ sed -i 's/project/   */g' $Changelog
 
 cp $Changelog $ChangelogDate
 cp $ChangelogDate $OUT/system/etc/
-cp $Changelog $OUT/system/etc/
+cp $ChangelogDate $OUT/
 rm $Changelog $ChangelogDate
