@@ -176,7 +176,8 @@ PRODUCT_PACKAGES += \
     Trebuchet \
     AudioFX \
     OmniSwitch \
-    LockClock
+    LockClock \
+    OpenDelta
 
 # rsync
 PRODUCT_PACKAGES += \
