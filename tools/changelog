@@ -4,11 +4,14 @@
 
 . $ANDROID_BUILD_TOP/vendor/flex/tools/colors
 
+date=`date +%Y%m%d`
 export Changelog=Changelog.txt
+export ChangelogDate=Changelog-"$date".txt
 
 if [ -f $Changelog ];
 then
 	rm -f $Changelog
+	rm -f $ChangelogDate
 fi
 
 touch $Changelog
@@ -35,5 +38,7 @@ done
 
 sed -i 's/project/   */g' $Changelog
 
+cp $Changelog $ChangelogDate
+cp $ChangelogDate $OUT/system/etc/
 cp $Changelog $OUT/system/etc/
-rm $Changelog
+rm $Changelog $ChangelogDate
