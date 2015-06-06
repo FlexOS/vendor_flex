@@ -232,7 +232,7 @@ ifndef FLEX_BUILDTYPE
 endif
 
 # Filter out random types, so it'll reset to unofficial
-ifeq ($(filter weekly nightly release experimental,$(FLEX_BUILDTYPE)),)
+ifeq ($(filter official weekly nightly release experimental,$(FLEX_BUILDTYPE)),)
     FLEX_BUILDTYPE :=
 endif
 
