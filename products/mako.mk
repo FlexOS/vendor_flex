@@ -2,7 +2,7 @@
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 768
 
-# Inherit some common CM stuff.
+# Inherit some common flex stuff.
 $(call inherit-product, vendor/flex/config/common_full_phone.mk)
 
 # Enhanced NFC
@@ -18,7 +18,9 @@ PRODUCT_BRAND := google
 PRODUCT_MODEL := Nexus 4
 PRODUCT_MANUFACTURER := LGE
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=occam BUILD_FINGERPRINT=google/occam/mako:5.0.1/LRX22C/1602158:user/release-keys PRIVATE_BUILD_DESC="occam-user 5.0.1 LRX22C 1602158 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += \
+   PRODUCT_NAME=occam BUILD_FINGERPRINT=google/occam/mako:5.1.1/LMY47V/1836172:user/release-keys \
+   PRIVATE_BUILD_DESC="occam-user 5.1.1 LMY47V 1836172 release-keys"
 
 # Enable Torch
 PRODUCT_PACKAGES += Torch
